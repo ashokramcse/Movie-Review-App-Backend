@@ -8,12 +8,21 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DB);
 
-const { Movie } = require('./models/movies');
+const { Movie } = require('./models/movie');
 
 app.get('/',(req,res) => {
     res.json({
         message : "Success"
     })
 })
+
+app.get('/get-all-movies',(req,res) => {
+    Movie.find()
+        .then((movies) => {
+            res.json(movies);
+        }, (err) => {
+            console.log(err);
+        });
+});
 
 app.listen(app.get('port'));

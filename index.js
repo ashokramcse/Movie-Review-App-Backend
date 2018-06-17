@@ -25,4 +25,12 @@ app.get('/get-all-movies',(req,res) => {
         });
 });
 
+app.get('/get-details-by-id/:id',(req,res) => {
+    Movie.findById(req.params.id).then((detail) => {
+        res.json(detail);
+    },(err) => {
+        console.log(err)
+    });
+});
+
 app.listen(app.get('port'));

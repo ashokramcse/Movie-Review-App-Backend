@@ -46,12 +46,12 @@ app.put('/add-review/:id', (req, res) => {
         $push: {
             "reviews": req.body
         }
-    }
+    };
 
     var updateOptions = {
         "safe": true,
         new: true
-    }
+    };
 
 
     Movie.findByIdAndUpdate(req.params.id, updateQuery, updateOptions).then((updateFilm) => {
